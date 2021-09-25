@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
+
 import { SignIn } from "./pages/SignIn";
 
 function App() {
@@ -13,5 +14,5 @@ function App() {
     </div>
   );
 }
-  
+
 export default App;
