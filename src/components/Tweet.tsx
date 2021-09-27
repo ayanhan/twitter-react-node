@@ -4,11 +4,13 @@ import CommentIcon from "@material-ui/icons/ChatBubbleOutlineOutlined";
 import RepostIcon from "@material-ui/icons/RepeatOutlined";
 import LikeIcon from "@material-ui/icons/FavoriteBorderOutlined";
 import ShareIcon from "@material-ui/icons/ReplyOutlined";
+import { Link } from 'react-router-dom';
 
 import { Avatar, IconButton, Paper, Typography } from "@material-ui/core";
 import { useHomeStyles } from "../pages/Home/theme";
 
 interface TweetProps {
+  _id: string;
   text: string;
   classes: ReturnType<typeof useHomeStyles>;
   user: {
@@ -19,12 +21,14 @@ interface TweetProps {
 }
 
 export const Tweet: React.FC<TweetProps> = ({
+  _id,
   text,
   user,
   classes,
 }: TweetProps): React.ReactElement => {
   return (
-    <Paper
+    <Link className={classes.tweetWrapper} to={`/home/tweet/${_id}`}>
+      <Paper
       className={classNames(classes.tweet, classes.tweetsHeader)}
       variant="outlined"
     >
@@ -68,5 +72,6 @@ export const Tweet: React.FC<TweetProps> = ({
         </div>
       </div>
     </Paper>
+    </Link>
   );
 };
