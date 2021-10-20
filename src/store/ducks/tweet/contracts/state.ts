@@ -7,6 +7,13 @@ export enum LoadingState {
   NEVER = 'NEVER',
 }
 
+export enum AddFormState {
+  LOADING = 'LOADING',
+  ERROR = 'ERROR',
+  NEVER = 'NEVER',
+}
+
+
 export interface TweetState {
   data?: Tweet;
   loadingState: LoadingState;

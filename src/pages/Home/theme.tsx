@@ -73,6 +73,7 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     alignItems: "center",
     borderTop: "0",
+    flex: 1,
     borderLeft: "0",
     borderRight: "0",
     borderRadius: 0,
@@ -80,6 +81,10 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
     "& h6": {
       fontWeight: 800,
     },
+  },
+  tweetsHeaderUser: {
+    display: 'flex',
+    alignItems: 'center',
   },
   tweetsHeaderBackButton: {
     marginRight: 20,
@@ -112,6 +117,15 @@ export const useHomeStyles = makeStyles((theme: Theme) => ({
   },
   tweetUserName: {
     color: grey[500],
+  },
+  fullTweet: {
+    padding: 22,
+  },
+  fullTweetText: {
+    fontSize: 24,
+    marginTop: 20,
+    lineHeight: 1.3125,
+    wordBreak: 'break-word',
   },
   rightSide: {
     paddingTop: 20,

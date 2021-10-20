@@ -1,4 +1,3 @@
-import { Tweet } from '../tweets/contracts/state';
 import {
   FetchTweetDataActionInterface,
   SetTweetDataActionInterface,
