@@ -1,7 +1,6 @@
 import React from 'react';
-
 import { Paper, Typography } from '@material-ui/core';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/theme';
 import List from '@material-ui/core/List/List';
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import ListItemText from '@material-ui/core/ListItemText/ListItemText';
