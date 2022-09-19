@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import {
     fetchTweetData,
     setTweetData,
-} from "../../../store/ducks/tweet/actionCreatots";
+} from "../../../store/ducks/tweet/actionCreators";
 import {
     selectIsTweetLoading,
     selectTweetData,
