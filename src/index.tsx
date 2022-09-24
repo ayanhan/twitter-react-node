@@ -10,6 +10,7 @@ import { store } from "./store/store";
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
+      <input type="file" id="avatar" />
       <CssBaseline />
       <Router>
         <Provider store={store}>
