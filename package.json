@@ -30,8 +30,8 @@
     "camelcase": "^6.1.0",
     "case-sensitive-paths-webpack-plugin": "2.3.0",
     "css-loader": "4.3.0",
-    "dotenv": "8.2.0",
     "date-fns": "^2.16.1",
+    "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^7.11.0",
     "eslint-config-react-app": "^6.0.0",
@@ -53,6 +53,7 @@
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
     "json-server": "^0.16.3",
+    "medium-zoom": "^1.0.6",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "pnp-webpack-plugin": "1.6.4",
@@ -113,7 +114,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.21"
+    "@types/react": "^17.0.21",
+    "sass": "^1.55.0"
   },
   "jest": {
     "roots": [

@@ -1,3 +1,4 @@
+// @ts-no.tsx
 import Button from "@material-ui/core/Button";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -43,7 +44,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({
     >(() => {});
     const loadingStatus = useSelector(selectUserStatus);
 
-    const { control, handleSubmit, errors } = useForm<LoginFormProps>({
+    const { control, handleSubmit, formState: { errors }, } = useForm<LoginFormProps>({
         resolver: yupResolver(LoginFormSchema),
     });
 

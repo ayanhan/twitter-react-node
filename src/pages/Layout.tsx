@@ -6,10 +6,7 @@ import SearchIcon from '@material-ui/icons/SearchOutlined';
 import { SideMenu } from '../components/SideMenu';
 import { useHomeStyles } from './theme';
 import { SearchTextField } from '../components/SearchTextField';
-import { useDispatch } from 'react-redux';
-import { fetchTweets } from '../store/ducks/tweets/actionCreators';
 import { Tags } from '../components/Tags';
-import { fetchTags } from '../store/ducks/tags/actionCreators';
 import { Users } from '../components/Users';
 
 interface Layout {
@@ -18,12 +15,6 @@ interface Layout {
 
 export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
   const classes = useHomeStyles();
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-    dispatch(fetchTweets());
-    dispatch(fetchTags());
-  }, [dispatch]);
 
   return (
     <Container className={classes.wrapper} maxWidth="lg">

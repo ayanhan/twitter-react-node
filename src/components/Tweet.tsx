@@ -16,12 +16,17 @@ import {
 import { useHomeStyles } from "../pages/theme";
 import { useHistory } from "react-router-dom";
 import { formatDate } from "../utils/formatDate";
+import { ImageList } from './ImageList';
+import { removeTweet } from '../store/ducks/tweets/actionCreators';
+import { useDispatch } from 'react-redux';
+
 
 interface TweetProps {
     _id: string;
     text: string;
     classes: ReturnType<typeof useHomeStyles>;
     createdAt: string;
+    images?: string[];
     user: {
         fullname: string;
         username: string;
@@ -34,8 +39,10 @@ export const Tweet: React.FC<TweetProps> = ({
     text,
     user,
     classes,
+    images,
     createdAt,
 }: TweetProps): React.ReactElement => {
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const history = useHistory();
@@ -53,9 +60,16 @@ export const Tweet: React.FC<TweetProps> = ({
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = (event: React.MouseEvent<HTMLElement>) => {
+    const handleClose = (event: React.MouseEvent<HTMLElement>): void => {
         event.stopPropagation();
         event.preventDefault();
+    };
+
+    const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
+      handleClose(event);
+      if (window.confirm('Are you sure you want to delete this tweet?')) {
+        dispatch(removeTweet(_id));
+      }
     };
 
     return (
@@ -102,7 +116,7 @@ export const Tweet: React.FC<TweetProps> = ({
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleClose}>Edit</MenuItem>
-                                <MenuItem onClick={handleClose}>
+                                <MenuItem onClick={handleRemove}>
                                     Delete tweet
                                 </MenuItem>
                             </Menu>
@@ -110,6 +124,7 @@ export const Tweet: React.FC<TweetProps> = ({
                     </div>
                     <Typography variant="body1" gutterBottom>
                         {text}
+                        {images && <ImageList classes={classes} images={images} />}
                     </Typography>
                     <div className={classes.tweetFooter}>
                         <div>

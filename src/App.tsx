@@ -2,6 +2,7 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch, useHistory } from "react-router-dom";
+import { ActivatePage } from "./pages/ActivatePage";
 import { Home } from "./pages/Home";
 import { Layout } from "./pages/Layout";
 import { SignIn } from "./pages/SignIn";
@@ -30,30 +31,10 @@ function App() {
     React.useEffect(() => {
         if (!isAuth && isReady) {
             history.push("/signin");
-        } else {
+        } else if (history.location.pathname === "/") {
             history.push("/home");
         }
     }, [isAuth, isReady]);
-
-    React.useEffect(() => {
-        const el = document.querySelector("#avatar");
-
-        if (el) {
-            el.addEventListener("change", () => {
-                const avatar = document.getElementById("avatar");
-                if (avatar) {
-                    // @ts-ignore
-                    let photo = avatar.files[0];
-                    let req = new XMLHttpRequest();
-                    let formData = new FormData();
-
-                    formData.append("avatar", photo);
-                    req.open("POST", "/upload");
-                    req.send(formData);
-                }
-            });
-        }
-    }, []);
 
     if (!isReady) {
         return (
@@ -72,7 +53,8 @@ function App() {
                 <Route path="/signin" component={SignIn} exact />
                 <Layout>
                     <Route path="/home" component={Home} />
-                    <Route path="/user" component={UserPage} />
+                    <Route path="/user/:id" component={UserPage} exact />
+                    <Route path="/user/activate/:hash" component={ActivatePage} exact />
                 </Layout>
             </Switch>
         </div>

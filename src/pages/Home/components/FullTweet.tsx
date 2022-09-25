@@ -1,6 +1,7 @@
 import React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Avatar from "@material-ui/core/Avatar";
+import mediumZoom from "medium-zoom";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import classNames from "classnames";
@@ -23,6 +24,7 @@ import {
 } from "../../../store/ducks/tweet/selectors";
 import { useHomeStyles } from "../../theme";
 import { Tweet } from "../../../components/Tweet";
+import { ImageList } from "../../../components/ImageList";
 
 export const FullTweet: React.FC = (): React.ReactElement | null => {
     const classes = useHomeStyles();
@@ -42,6 +44,12 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
         };
     }, [dispatch, id]);
 
+    React.useEffect(() => {
+        if (!isLoading) {
+            mediumZoom(".tweet-images img");
+        }
+    }, [isLoading]);
+
     if (isLoading) {
         return (
             <div className={classes.tweetsCentred}>
@@ -57,7 +65,7 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     <div className={classNames(classes.tweetsHeaderUser)}>
                         <Avatar
                             className={classes.tweetAvatar}
-                            alt={`Аватарка пользователя ${tweetData.user.fullname}`}
+                            alt={`User Avatar ${tweetData.user.fullname}`}
                             src={tweetData.user.avatarUrl}
                         />
                         <Typography>
@@ -72,6 +80,14 @@ export const FullTweet: React.FC = (): React.ReactElement | null => {
                     </div>
                     <Typography className={classes.fullTweetText} gutterBottom>
                         {tweetData.text}
+                        <div className="tweet-images">
+                            {tweetData.images && (
+                                <ImageList
+                                    classes={classes}
+                                    images={tweetData.images}
+                                />
+                            )}
+                        </div>
                     </Typography>
 
                     <Typography>

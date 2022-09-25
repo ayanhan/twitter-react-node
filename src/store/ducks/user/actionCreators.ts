@@ -6,9 +6,14 @@ import {
     FetchUserDataActionInterface,
     SetUserDataActionInterface,
     SetUserLoadingStatusActionInterface,
+    SignOutActionInterface,
     UserActionsType,
 } from "./contracts/actionTypes";
 import { UserState } from "./contracts/state";
+
+export const signOut = (): SignOutActionInterface => ({
+    type: UserActionsType.SIGN_OUT,
+});
 
 export const setUserData = (
     payload: UserState["data"]
@@ -45,4 +50,5 @@ export const setUserLoadingStatus = (
 export type UserActions =
     | SetUserDataActionInterface
     | SetUserLoadingStatusActionInterface
-    | FetchUserDataActionInterface;
+    | FetchUserDataActionInterface
+    | SignOutActionInterface;
